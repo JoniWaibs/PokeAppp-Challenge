@@ -1,0 +1,26 @@
+<div class="container mt-sm-5">
+  <div class="row bg-secondary pt-3 pb-sm-3">
+    <div class="col-12 col-sm-6">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker [latitude]="lat" [longitude]="lng">
+          <agm-info-window>
+            User
+          </agm-info-window>
+        </agm-marker>
+        <agm-marker *ngIf="showPoke" [latitude]="poke.latitude" [longitude]="poke.longitude">
+          <agm-info-window>
+            <h2>{{poke.name}}</h2>
+            <img src={{poke.avatar}} alt="" class="d-block mx-auto">
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+    <form class="form-group col-12 col-sm-6" [formGroup]="inputData" (ngSubmit)="handleSubmit()">
+      <div *ngIf="error"class="alert alert-danger p-1 text-center mt-2">
+        <p class="m-0">{{alert}}</p>
+      </div>
+      <input type="text" id="seachPoke" placeholder="Busca un pokemon.." class="form-control mt-3"formControlName="PokeName">
+      <button type="submit" class="btn btn-block btn-success my-3">Buscar</button>
+    </form>
+  </div>
+</div>
